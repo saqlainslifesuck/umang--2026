@@ -1,28 +1,23 @@
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
 
-export const {
-  handlers,
-  signIn,
-  signOut,
-  auth,
-} = NextAuth({
+export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
 
   callbacks: {
     async signIn({ user }) {
       const email = user.email
 
-      if (!email) {
-        return false
-      }
-
-      // Only allow institutional accounts
-      if (!email.toLowerCase().endsWith("@thebges.edu.in")) {
+      // Allow only institutional college email
+      if (!email?.toLowerCase().endsWith("@thebges.edu.in")) {
         return false
       }
 
       return true
+    },
+
+    authorized({ auth }) {
+      return !!auth?.user
     },
   },
 

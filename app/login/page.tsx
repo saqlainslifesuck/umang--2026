@@ -1,356 +1,182 @@
 import { signIn } from "@/auth"
 
-const socials = [
-  {
-    name: "Instagram",
-    short: "◎",
-    href: "https://www.instagram.com/bescumang",
-  },
-  {
-    name: "Facebook",
-    short: "f",
-    href: "https://www.facebook.com/bescumang/",
-  },
-  {
-    name: "LinkedIn",
-    short: "in",
-    href: "https://www.linkedin.com/school/the-bhawanipur/",
-  },
-  {
-    name: "YouTube",
-    short: "▶",
-    href: "https://youtube.com/@thebhawanipurcollege4312",
-  },
-]
-
 export default function LoginPage() {
+  async function handleGoogleSignIn() {
+    "use server"
+
+    await signIn("google", {
+      redirectTo: "/",
+    })
+  }
+
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#14265b] text-white">
+    <main className="relative min-h-screen w-full overflow-hidden bg-[#020711] text-white">
 
-      {/* ================================
+      {/* =========================
           BACKGROUND VIDEO
-      ================================= */}
-
+      ========================== */}
       <video
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 z-0 h-full w-full object-cover"
       >
         <source
-          src="/images/besc-background.mp4"
+          src="/images/umang-login.mp4"
           type="video/mp4"
         />
       </video>
 
-      {/* Dark blue overlay */}
-      <div className="absolute inset-0 bg-[#101f52]/65" />
+      {/* =========================
+          DARK OVERLAY
+      ========================== */}
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.58)_45%,rgba(0,0,0,0.82)_100%)]" />
 
-      {/* Bottom cinematic gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#071333]/95 via-[#071333]/20 to-[#071333]/45" />
+      {/* =========================
+          VIGNETTE
+      ========================== */}
+      <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.45)_100%)]" />
 
-      {/* ================================
-          HEADER
-      ================================= */}
-
-      <header className="relative z-20 flex items-center px-7 pt-5 md:px-10 lg:px-16 lg:pt-6">
-
-        {/* BESC LOGO */}
-
+      {/* =========================
+          BESC LOGO
+      ========================== */}
+      <div className="absolute left-8 top-7 z-50 md:left-10 md:top-8">
         <img
           src="/images/besc-logo.png"
           alt="The Bhawanipur Education Society College"
-          className="h-12 w-auto object-contain md:h-14 lg:h-16"
+          className="h-auto w-[130px] object-contain md:w-[155px]"
         />
-
-        {/* Long BESC-style line */}
-
-        <div className="mx-7 hidden h-px flex-1 bg-white/25 md:block" />
-
-        {/* RIGHT SIDE */}
-
-        <div className="ml-auto flex items-center gap-4 md:gap-5">
-
-          {/* UMANG LOGO */}
-
-          <img
-            src="/images/umang-logo.png"
-            alt="UMANG 2026"
-            className="h-10 w-auto object-contain md:h-12 lg:h-14"
-          />
-
-          {/* Divider */}
-
-          <div className="hidden h-7 w-px bg-white/30 sm:block" />
-
-          {/* SEARCH ICON */}
-
-          <button
-            type="button"
-            aria-label="Search"
-            className="flex h-9 w-9 items-center justify-center text-[#f7c62e] transition hover:scale-110"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="h-5 w-5"
-            >
-              <circle cx="11" cy="11" r="6.5" />
-              <path d="M16 16l5 5" />
-            </svg>
-          </button>
-
-          {/* INFO ICON */}
-
-          <button
-            type="button"
-            aria-label="Information"
-            className="flex h-9 w-9 items-center justify-center text-[#f7c62e] transition hover:scale-110"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="h-5 w-5"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 10v6" />
-              <circle
-                cx="12"
-                cy="7"
-                r="0.8"
-                fill="currentColor"
-                stroke="none"
-              />
-            </svg>
-          </button>
-
-        </div>
-      </header>
-
-      {/* ================================
-          MAIN CONTENT
-      ================================= */}
-
-      <section className="relative z-10 flex min-h-[calc(100vh-120px)] items-center px-7 py-12 md:px-10 lg:px-16">
-
-        <div className="mx-auto grid w-full max-w-[1500px] items-center gap-14 lg:grid-cols-[1fr_430px] xl:grid-cols-[1fr_460px]">
-
-          {/* ================================
-              LEFT HERO
-          ================================= */}
-
-          <div className="max-w-3xl">
-
-            <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.35em] text-[#f7c62e] md:text-xs">
-              MANAGEMENT &amp; OPERATIONS PORTAL
-            </p>
-
-            {/* ACTUAL UMANG LOGO */}
-
-            <img
-              src="/images/umang-logo.png"
-              alt="UMANG 2026"
-              className="w-[280px] max-w-full object-contain object-left md:w-[380px] lg:w-[460px]"
-            />
-
-            {/* BESC STYLE COLOUR LINE */}
-
-            <div className="mt-7 flex items-center gap-2">
-
-              <span className="h-[4px] w-16 rounded-full bg-[#233d8f]" />
-
-              <span className="h-[4px] w-10 rounded-full bg-[#f7c62e]" />
-
-              <span className="h-[4px] w-8 rounded-full bg-[#dc2855]" />
-
-              <span className="h-[4px] w-10 rounded-full bg-[#38a594]" />
-
-            </div>
-
-            {/* DESCRIPTION */}
-
-            <p className="mt-7 max-w-2xl text-sm font-normal leading-7 text-white/90 md:text-base md:leading-8">
-
-              A central workspace for UMANG 2026 —
-              connecting departments, teams, resources
-              and operations through one platform.
-
-            </p>
-
-            {/* LOCATION / BRANDING */}
-
-            <div className="mt-8 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/65">
-
-              <span className="h-px w-8 bg-[#f7c62e]" />
-
-              <span>BESC • KOLKATA</span>
-
-            </div>
-
-          </div>
-
-          {/* ================================
-              LOGIN CARD
-          ================================= */}
-
-          <div className="w-full">
-
-            <div className="overflow-hidden rounded-xl border border-white/30 bg-[#152960]/75 shadow-2xl backdrop-blur-xl">
-
-              {/* TOP COLOUR BAR */}
-
-              <div className="flex h-1.5">
-
-                <div className="w-[48%] bg-[#233d8f]" />
-
-                <div className="w-[22%] bg-[#f7c62e]" />
-
-                <div className="w-[15%] bg-[#dc2855]" />
-
-                <div className="w-[15%] bg-[#38a594]" />
-
-              </div>
-
-              {/* CARD CONTENT */}
-
-              <div className="p-7 md:p-9">
-
-                <p className="text-[9px] font-semibold uppercase tracking-[0.35em] text-[#f7c62e]">
-                  MEMBER ACCESS
-                </p>
-
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
-
-                  Welcome to
-                  <br />
-
-                  <span className="text-[#f7c62e]">
-                    UMANG.
-                  </span>
-
-                </h2>
-
-                <p className="mt-4 max-w-sm text-sm font-normal leading-6 text-white/70">
-
-                  Sign in using your authorized college
-                  Google account to continue.
-
-                </p>
-
-                {/* GOOGLE LOGIN */}
-
-                <form
-                  action={async () => {
-                    "use server"
-
-                    await signIn("google", {
-                      redirectTo: "/",
-                    })
-                  }}
-                  className="mt-8"
-                >
-
-                  <button
-                    type="submit"
-                    className="group flex w-full items-center justify-between rounded-md bg-[#233d8f] px-5 py-4 text-sm font-semibold text-white shadow-lg transition duration-200 hover:bg-[#2d4aa5] hover:shadow-xl"
-                  >
-
-                    <span className="flex items-center gap-3">
-
-                      {/* GOOGLE ICON */}
-
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-bold text-[#4285F4]">
-                        G
-                      </span>
-
-                      <span>
-                        Continue with Google
-                      </span>
-
-                    </span>
-
-                    <span className="text-lg text-[#f7c62e] transition-transform duration-200 group-hover:translate-x-1">
-                      →
-                    </span>
-
-                  </button>
-
-                </form>
-
-                {/* ACCESS NOTE */}
-
-                <div className="mt-6 border-t border-white/15 pt-5">
-
-                  <p className="text-[10px] leading-5 text-white/45">
-                    Access is restricted to authorized UMANG members.
-                  </p>
-
-                </div>
-
-              </div>
-
-              {/* BOTTOM COLOUR BAR */}
-
-              <div className="flex h-2">
-
-                <div className="w-1/4 bg-[#38a594]" />
-
-                <div className="w-1/4 bg-[#f7c62e]" />
-
-                <div className="w-1/2 bg-[#233d8f]" />
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* ================================
-          SOCIAL MEDIA ICONS
-      ================================= */}
-
-      <div className="absolute bottom-6 left-7 z-20 flex items-center gap-2 md:left-10 lg:left-16">
-
-        {socials.map((social) => (
-
-          <a
-            key={social.name}
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={social.name}
-            title={social.name}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-[#152960]/50 text-[10px] font-bold text-[#f7c62e] backdrop-blur-md transition duration-200 hover:-translate-y-1 hover:border-[#f7c62e] hover:bg-[#f7c62e] hover:text-[#17275b]"
-          >
-
-            {social.short}
-
-          </a>
-
-        ))}
-
       </div>
 
-      {/* ================================
-          BOTTOM RIGHT
-      ================================= */}
+      {/* =========================
+          UMANG LOGO
+      ========================== */}
+      <div className="absolute right-8 top-7 z-50 md:right-10 md:top-8">
+        <img
+          src="/images/umang-logo.png"
+          alt="UMANG"
+          className="h-auto w-[125px] object-contain md:w-[150px]"
+        />
+      </div>
 
-      <div className="absolute bottom-7 right-7 z-20 hidden items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.3em] text-white/50 lg:flex">
+      {/* =========================
+          MAIN CONTENT
+      ========================== */}
+      <div className="relative z-40 flex min-h-screen w-full flex-col justify-center px-7 pb-24 pt-28 md:px-[7vw]">
 
-        <span className="h-px w-10 bg-[#f7c62e]" />
+        <div className="mx-auto flex w-full max-w-[1450px] flex-col items-center justify-between gap-12 lg:flex-row lg:gap-20">
 
+          {/* =========================
+              LEFT SIDE
+          ========================== */}
+          <section className="w-full max-w-[720px]">
+
+            <div className="mb-5 text-[12px] font-bold uppercase tracking-[0.25em] text-white/75 md:text-sm md:tracking-[0.28em]">
+              MANAGEMENT &amp; OPERATIONS PORTAL
+            </div>
+
+            <h1 className="m-0 text-[82px] font-black uppercase leading-[0.82] tracking-[-0.075em] text-white sm:text-[110px] md:text-[145px] lg:text-[170px]">
+              UMANG
+            </h1>
+
+            {/* MULTICOLOR LINE */}
+            <div className="mt-7 mb-7 h-[4px] w-full max-w-[520px] bg-[linear-gradient(90deg,#ffca28_0%,#ff8a65_30%,#d66efd_63%,#5d8dff_100%)]" />
+
+            <p className="max-w-[600px] text-[15px] leading-7 text-white/70 md:text-[18px] md:leading-[1.7]">
+              The official management and operations portal for UMANG.
+              Coordinate departments, manage resources, and keep the
+              festival running seamlessly.
+            </p>
+
+            <div className="mt-12 text-[10px] uppercase tracking-[0.3em] text-white/50 md:mt-16 md:text-xs">
+              LEARN. EXPERIENCE. EVOLVE.
+            </div>
+
+          </section>
+
+          {/* =========================
+              LOGIN CARD
+          ========================== */}
+          <section className="w-full max-w-[440px] shrink-0">
+
+            <div className="rounded-[24px] border border-white/15 bg-[rgba(8,14,25,0.63)] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[20px] md:p-[38px]">
+
+              {/* CARD LABEL */}
+              <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.27em] text-white/55">
+                MEMBER ACCESS
+              </div>
+
+              {/* CARD TITLE */}
+              <h2 className="mb-3 text-[31px] font-bold leading-tight tracking-[-0.03em] md:text-[36px]">
+                Welcome to UMANG.
+              </h2>
+
+              {/* DESCRIPTION */}
+              <p className="mb-8 text-[14px] leading-6 text-white/60 md:text-[15px] md:leading-[1.65]">
+                Sign in using your authorized college Google
+                account to continue.
+              </p>
+
+              {/* GOOGLE BUTTON */}
+              <form action={handleGoogleSignIn}>
+                <button
+                  type="submit"
+                  className="flex h-[58px] w-full cursor-pointer items-center justify-center gap-3 rounded-xl border-0 bg-[#f4c542] text-[14px] font-extrabold tracking-[0.01em] text-[#111111] shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition duration-200 hover:scale-[1.01] hover:bg-[#ffd45a] active:scale-[0.99]"
+                >
+
+                  {/* GOOGLE ICON */}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill="#4285F4"
+                      d="M21.35 12.27c0-.72-.06-1.42-.18-2.09H12v3.96h5.24a4.49 4.49 0 0 1-1.94 2.95v2.45h3.14c1.84-1.7 2.91-4.2 2.91-7.27Z"
+                    />
+
+                    <path
+                      fill="#34A853"
+                      d="M12 21.9c2.63 0 4.84-.87 6.45-2.36l-3.14-2.45c-.87.58-1.98.92-3.31.92-2.54 0-4.7-1.72-5.47-4.03H3.29v2.53A9.75 9.75 0 0 0 12 21.9Z"
+                    />
+
+                    <path
+                      fill="#FBBC05"
+                      d="M6.53 13.98a5.86 5.86 0 0 1 0-3.72V7.73H3.29a9.75 9.75 0 0 0 0 8.78l3.24-2.53Z"
+                    />
+
+                    <path
+                      fill="#EA4335"
+                      d="M12 6.23c1.43 0 2.72.49 3.73 1.45l2.8-2.8C16.84 3.3 14.63 2.4 12 2.4a9.75 9.75 0 0 0-8.71 5.33l3.24 2.53C7.3 7.95 9.46 6.23 12 6.23Z"
+                    />
+                  </svg>
+
+                  Continue with Google
+                </button>
+              </form>
+
+              {/* RESTRICTION MESSAGE */}
+              <div className="mt-6 border-t border-white/10 pt-5 text-center text-[11px] leading-5 text-white/40">
+                Access is restricted to authorized UMANG members.
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+
+      {/* =========================
+          DATE
+      ========================== */}
+      <div className="absolute bottom-6 right-7 z-50 text-[9px] uppercase tracking-[0.2em] text-white/45 md:bottom-8 md:right-10 md:text-xs md:tracking-[0.22em]">
         UMANG 2026
-
       </div>
 
     </main>
